@@ -21,12 +21,15 @@ class JsonParsingComments extends ReadJsonData {
       jsonCommentData <- jsonData
       parsedJsonData <- Future(JsonDataParsingComments.parse(jsonCommentData))
     } yield parsedJsonData
-    parsedJsonData onComplete {
-      case Success(user) => println("User = " + user)
-      case Failure(exception) => println(exception.getMessage)
-    }
+
     val commentData = Await.result(parsedJsonData, 10.seconds)
     commentData
+    /*parsedJsonData onComplete {
+      case Success(comments) => comments
+      case Failure(exception) => println(exception.getMessage)
+
+    }
+    List.empty[Comment]*/
   }
 }
 case class Comment(postId: String, id: String, name: String, email: String, body: String)

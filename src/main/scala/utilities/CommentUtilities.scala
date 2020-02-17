@@ -4,8 +4,9 @@ import com.knoldus.JsonParsing.{JsonParsingComments, Comment}
 import utilities.traits.CommentTrait
 class CommentUtilities extends JsonParsingComments with CommentTrait {
 
+  val comments=getAllComments
   override def getAllCommentsByPostId(postId : String) : List[Comment] ={
-    val comments=getAllComments
+
     val res=for{
       comment<-comments
       if comment.postId == postId
@@ -15,7 +16,7 @@ class CommentUtilities extends JsonParsingComments with CommentTrait {
   }
 
   override def getCommentById(id: String): Comment = {
-    val comments=getAllComments
+    //val comments=getAllComments
     val res=for{
       comment<-comments
       if comment.id == id
@@ -25,7 +26,7 @@ class CommentUtilities extends JsonParsingComments with CommentTrait {
   }
 
   override def getAllCommentsByPostId(postId: List[String]): List[Comment] = {
-    val comments=getAllComments
+   // val comments=getAllComments
 
     val res=for{
       comment<-comments
@@ -36,9 +37,6 @@ class CommentUtilities extends JsonParsingComments with CommentTrait {
     res
   }
 
-  //override def getAllCommentsByPostId(postId: List[String]): List[Comment] = ???
-
- // override def getAllCommentsByPostId(postId: String): List[Comment] = ???
 }
 object CommentUtilities{
   val commentUtilities=new CommentUtilities

@@ -22,12 +22,14 @@ class JsonParsingPosts extends ReadJsonData {
       parsedJsonData <- Future(JsonDataParsingPosts.parse(jsonCommentData))
     } yield parsedJsonData
 
-    parsedJsonData onComplete {
-      case Success(user) => println("User = " + user)
-      case Failure(exception) => println(exception.getMessage)
-    }
     val postData = Await.result(parsedJsonData, 10.seconds)
     postData
+   /* parsedJsonData onComplete {
+      case Success(post) =>post
+      case Failure(exception) => println(exception.getMessage)
+    }
+
+    List.empty[Post]*/
   }
 }
 case class Post(userId: String, id: String, title: String, body: String)
@@ -39,6 +41,7 @@ object JsonDataParsingPosts {
 
   def parse(jsonData: String): List[Post] = {
     val parsedJsonData = net.liftweb.json.parse(jsonData)
+    //parsedJsonData.e
     parsedJsonData.children map { comment =>
 
       val userId = (comment \ "userId").extract[String]

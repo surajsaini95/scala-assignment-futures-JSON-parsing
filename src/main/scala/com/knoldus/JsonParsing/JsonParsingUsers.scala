@@ -32,13 +32,16 @@ class JsonParsingUsers extends ReadJsonData {
       jsonUserData <- jsonData
       parsedJsonData <- Future(JsonDataParsingUsers.parse(jsonUserData))
     } yield parsedJsonData
-
-    parsedJsonData onComplete {
-      case Success(user) => println("User = " + user)
-      case Failure(exception) => println(exception.getMessage)
-    }
     val userData = Await.result(parsedJsonData, 10.seconds)
     userData
+   /* parsedJsonData onComplete {
+      case Success(user) => user
+      case Failure(exception) => println(exception.getMessage)
+    }
+
+    List.empty[User]
+
+    */
   }
 }
 
@@ -46,8 +49,10 @@ class JsonParsingUsers extends ReadJsonData {
 object JsonDataParsingUsers {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
+
   def parse(jsonData: String): List[User] = {
   val parsedJsonData = net.liftweb.json.parse(jsonData)
+
   parsedJsonData.children map { user =>
 
       val id = (user \ "id").extract[String]
