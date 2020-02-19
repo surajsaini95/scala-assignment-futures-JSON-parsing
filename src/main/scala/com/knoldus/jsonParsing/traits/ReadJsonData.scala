@@ -1,4 +1,4 @@
-package com.knoldus.JsonParsing.traits
+package com.knoldus.jsonParsing.traits
 
 import org.apache.commons.io.IOUtils
 import org.apache.http.client.methods.HttpGet
