@@ -1,4 +1,4 @@
-package com.knoldus.jsonParsing
+package com.knoldus.jsonParsing.view
 
 import org.scalatest.{AsyncFlatSpec, BeforeAndAfterAll}
 
@@ -10,11 +10,13 @@ class JsonParsingSpec extends AsyncFlatSpec with BeforeAndAfterAll{
       jsonParsing=new JsonParsing
   }
 
-  "getUserWithMaxPosts" should "return the name of user having max post" in {
+  behavior of "getUserWithMaxPosts"
+  it should "eventually return the name of user having max post" in {
     jsonParsing.getUserWithMaxPosts.map(user => assert(user == "Clementina DuBuque"))
   }
 
-  "getUserWithMaxPostComments" should "return the name of user having max comments on post" in {
+  behavior of "getUserWithMaxPostComments"
+  it should "eventually return the name of user having max comments on post" in {
     jsonParsing.getUserWithMaxPostComments.map(user => assert(user == "Clementina DuBuque"))
   }
 }
