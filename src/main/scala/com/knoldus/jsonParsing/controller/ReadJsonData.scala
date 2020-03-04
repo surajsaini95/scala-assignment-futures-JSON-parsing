@@ -19,5 +19,5 @@ object ReadJsonData {
     val client = HttpClientBuilder.create().build()
     val response = client.execute(request)
     IOUtils.toString(response.getEntity.getContent)
-   }
+  }
 }

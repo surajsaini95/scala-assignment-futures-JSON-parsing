@@ -12,13 +12,4 @@ class TwitterInstanceSpec extends FlatSpec {
    assert(twitter.getScreenName == "TheGauravRawat")
   }
 
-  it should "throw exception as credentials are invalid" in {
-    try{
-      val consumerKey = ""
-      val twitter = TwitterInstance.getTwitterInstance(consumerKey)
-    }catch{
-      case exception: Exception => assert(exception.getMessage == "failed to get twitter instance")
-    }
-  }
-
 }

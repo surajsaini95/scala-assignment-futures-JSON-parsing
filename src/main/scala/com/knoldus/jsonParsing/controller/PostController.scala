@@ -22,7 +22,7 @@ object PostController {
 
     val parsedJsonData: Future[List[Post]] = for {
       jsonCommentData <- jsonData
-      parsedJsonData <- Future(DataParser.postParser(jsonCommentData))
+      parsedJsonData <- Future(DataParser.parser[Post](jsonCommentData))
     } yield parsedJsonData
 
 

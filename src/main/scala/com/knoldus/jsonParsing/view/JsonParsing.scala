@@ -55,3 +55,13 @@ class JsonParsing {
         users.filter(_.id==postWithMaxComment.userId).head.name)).flatten fallbackTo Future{"Data not found"}
   }
 }
+
+object Ob extends App{
+ val ob=new JsonParsing
+  val r1 =ob.getUserWithMaxPosts
+  val r2 =ob.getUserWithMaxPostComments
+  Thread.sleep(5000)
+  println(r1)
+  println(r2)
+}
+

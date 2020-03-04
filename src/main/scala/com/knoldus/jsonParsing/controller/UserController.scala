@@ -26,8 +26,9 @@ object UserController {
 
     val parsedJsonData: Future[List[User]] = for {
       jsonUserData <- jsonData
-      parsedJsonData <- Future(DataParser.userParser(jsonUserData))
+      parsedJsonData <- Future(DataParser.parser[User](jsonUserData))
     } yield parsedJsonData
+
 
     val allUsers = parsedJsonData fallbackTo allUsersFallback
 

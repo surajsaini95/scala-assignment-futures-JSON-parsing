@@ -11,59 +11,22 @@ object DataParser {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
-  /**
-   * method postParser is used to parse the data into model class Post
-   *
-   * @param jsonData it accepts a string of json data
-   * @return the list of model class Post
-   */
-  def postParser(jsonData: String): List[Post] = {
-
-    try{
-      val parsedJsonData = net.liftweb.json.parse(jsonData)
-    parsedJsonData.children map { post =>
-      post.extract[Post]
-    }
-    }catch {
-      case exception: Exception => List.empty[Post]
-    }
-
-  }
 
   /**
-   * method userParser is used to parse the data into model class User
-   *
-   * @param jsonData it accepts a string of json data
-   * @return the list of model class User
+   *  method parser is generic in nature and used to parse the data into model class.
+   * @param jsonData is passed as string.
+   * @param m implicit manifest needed for inbuilt extract method generic.
+   * @tparam T type of model class.
+   * @return list of type T.
    */
-  def userParser(jsonData: String): List[User] = {
-
-    try{
-      val parsedJsonData = net.liftweb.json.parse(jsonData)
-    parsedJsonData.children map { user =>
-      user.extract[User]
-    }
-    }catch {
-      case exception: Exception => List.empty[User]
-    }
-  }
-
-  /**
-   * method commentParser is used to parse the data into model class Comment
-   *
-   * @param jsonData it accepts a string of json data
-   * @return the list of model class Comment
-   */
-  def commentParser(jsonData: String): List[Comment] = {
-
+  def parser[T](jsonData: String)(implicit m : Manifest[T]): List[T] = {
     try{
       val parsedJsonData = net.liftweb.json.parse(jsonData)
       parsedJsonData.children map { comment =>
-        comment.extract[Comment]
+        comment.extract[T]
       }
     }catch {
-      case exception: Exception => List.empty[Comment]
+      case exception: Exception => List.empty[T]
     }
   }
-
 }

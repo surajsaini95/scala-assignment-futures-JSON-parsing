@@ -25,7 +25,7 @@ object CommentController {
 
     val parsedJsonData = for {
       jsonCommentData <- jsonData
-      parsedJsonData <- Future(DataParser.commentParser(jsonCommentData))
+      parsedJsonData <- Future(DataParser.parser[Comment](jsonCommentData))
     } yield parsedJsonData
 
 

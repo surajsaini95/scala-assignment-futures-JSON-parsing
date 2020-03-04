@@ -18,15 +18,9 @@ object TwitterInstance {
     val token = "160922224-AKOoOasbqi3huqT7uyq4Og0Oqlucn8rKeD9IcUvU"
     val tokenSecret = "7HgIJUmjOX2AZThvVp7RPWsZwOrW1ffpvkEpjeBSQynnH"
 
-   try{
      val twitterInstance = new TwitterFactory().getInstance()
      twitterInstance.setOAuthConsumer(consumerKey,consumerSecret)
      twitterInstance.setOAuthAccessToken(new AccessToken(token,tokenSecret))
      twitterInstance
-   }catch {
-     case exception: Exception =>throw new Exception("failed to get twitter instance")
    }
-  }
-
-
 }
