@@ -1,4 +1,4 @@
-package com.knoldus.jsonParsing.controller
+package com.knoldus.json.controller
 
 import org.scalatest.AsyncFlatSpec
 

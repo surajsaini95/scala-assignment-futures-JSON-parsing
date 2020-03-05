@@ -1,4 +1,4 @@
-package com.knoldus.jsonParsing.model
+package com.knoldus.json.model
 
 /**
  * This is a case class used to model Company details of a user

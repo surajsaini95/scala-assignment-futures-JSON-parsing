@@ -1,6 +1,6 @@
-package com.knoldus.jsonParsing.controller
+package com.knoldus.json.controller
 
-import com.knoldus.jsonParsing.model.{Comment, Post, User}
+import com.knoldus.json.model.{Comment, Post, User}
 import org.scalatest.AsyncFlatSpec
 
 import scala.io.Source

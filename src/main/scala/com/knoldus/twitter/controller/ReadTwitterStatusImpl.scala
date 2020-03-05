@@ -1,13 +1,13 @@
 package com.knoldus.twitter.controller
 
-import twitter4j.{Query, Status, Twitter}
+import twitter4j.{Query, Status}
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.collection.JavaConverters._
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class ReadTwitterStatusImpl extends ReadTwitterStatus{
-  override def getTwitterStatus(twitter: Twitter,hashTagQuery: Query): Future[List[Status]] = Future{
-    twitter.search(hashTagQuery).getTweets.asScala.toList
+class ReadTwitterStatusImpl(twitterInstance: TwitterInstance) extends ReadTwitterStatus{
+  override def getTwitterStatus(hashTagQuery: Query): Future[List[Status]] = Future{
+    twitterInstance.getTwitterInstance.search(hashTagQuery).getTweets.asScala.toList
   }
 }

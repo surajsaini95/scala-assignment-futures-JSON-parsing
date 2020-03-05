@@ -1,4 +1,4 @@
-package com.knoldus.jsonParsing.model
+package com.knoldus.json.model
 
 /**
  * This is a Post case class which is used to capture the details of a Post

@@ -2,25 +2,24 @@ package com.knoldus.twitter.view
 
 import java.sql.Timestamp
 
-import com.knoldus.twitter.controller.TwitterInstance
+import com.knoldus.twitter.controller.{ReadTwitterStatusImpl, TwitterInstance, TwitterInstanceImpl}
 import com.knoldus.twitter.model.ReTweet
 import twitter4j._
 
-import scala.collection.JavaConverters._
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{Await, Future}
 import scala.language.implicitConversions
 import java.time.Duration
 
+import com.knoldus.json.controller.DataParser
+
+import scala.concurrent.duration._
+import scala.io.Source
 /**
  * This is a class used to retrieve tweets from Twitter.
  */
 class RetrieveTweet {
 
-  def getTwitterInstance: Twitter ={
-    val consumerKey = "e6uS4phTxImI68qlA6h4V3zwR"
-    TwitterInstance.getTwitterInstance(consumerKey)
-  }
   /**
    * the method getTweetsCount can be used to find the number of tweets made using #hashtag
    * @param posts list of status from twitter.
@@ -78,29 +77,37 @@ class RetrieveTweet {
   }.fallbackTo(Future{List.empty[ReTweet]})
 
 }
+object Ob extends App{
+  val retrieveTweet = new RetrieveTweet
 
-object RetrieveTweetOb extends App{
+  val data=Source.fromFile("./src/test/resources/testJsonDataPosts").toString()
 
-  val tweet = new RetrieveTweet
+  println(new JSONObject(data))
 
 
+}
+object RetrieveTweetOb extends App {
+
+  val retrieveTweet = new RetrieveTweet
   val hashTagQuery = new Query("#suraj")
+  val twitterInstance = new TwitterInstanceImpl
 
-  val posts: Future[List[Status]] = Future {
-    val list = twitter.search(hashTagQuery).getTweets.asScala.toList
-    list
+  /*val posts: Future[List[Status]] = Future {
+    new ReadTwitterStatusImpl(twitterInstance).getTwitterStatus(hashTagQuery)
   }.fallbackTo(Future{List.empty[Status]})
+*/
 
+  val posts = Future{
+    DataParser.parser[Status](Source.fromFile("./src/test/resources/testJsonDataPosts").getLines.mkString)
+  }
+  val tweetsCount = retrieveTweet.getTweetsCount(posts)
+  val averageTweetsPerDay = retrieveTweet.getAverageTweetsPerDay(posts)
+  val averageLikes = retrieveTweet.getAverageLikes(posts)
+  val reTweetPerTweet =retrieveTweet.getReTweetPerTweet(posts)
 
-  val tweetsCount = tweet.getTweetsCount(posts)
-
-  val averageTweetsPerDay = tweet.getAverageTweetsPerDay(posts)
-
-  val averageLikes = tweet.getAverageLikes(posts)
-
-  val reTweetPerTweet =tweet.getReTweetPerTweet(posts)
-
-  Thread.sleep(8000)
+  val result = Await.result(averageTweetsPerDay,8.second)
 
   println(averageTweetsPerDay)
+
+
 }

@@ -18,4 +18,29 @@ class RetrieveTweetSpec extends AsyncFlatSpec with BeforeAndAfterAll {
     retrieveTweet = new RetrieveTweet
   }
 
+  behavior of "getTweetsCount"
+  it should "return the count of the tweets" in {
+    val expectedCount = 1;
+    retrieveTweet.getTweetsCount(posts).map(actualCount => assert(expectedCount == actualCount))
+  }
+
+  behavior of "getAverageTweetsPerDay"
+  it should "return the average tweets per day" in {
+    val expectedActualTweet = 1;
+    retrieveTweet.getAverageTweetsPerDay(posts).
+      map(actualActualTweet => assert(expectedActualTweet == actualActualTweet))
+  }
+
+  behavior of "getAverageLikes"
+  it should "return the average likes on a particular" in {
+    val expectedAverageLikes = 1;
+    retrieveTweet.getAverageLikes(posts).map(actualAverageLikes => assert(expectedAverageLikes == actualAverageLikes))
+  }
+
+  behavior of "getReTweetPerTweet"
+  it should "return the re-tweets made on tweet" in {
+    val expectedActualReTweetPerTweet = 1;
+    retrieveTweet.getAverageTweetsPerDay(posts).
+      map(actualActualReTweetPerTweet => assert(expectedActualReTweetPerTweet == actualActualReTweetPerTweet))
+  }
 }

@@ -1,6 +1,6 @@
-package com.knoldus.jsonParsing.controller
+package com.knoldus.json.controller
 
-import com.knoldus.jsonParsing.model.Comment
+import com.knoldus.json.model.Comment
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 

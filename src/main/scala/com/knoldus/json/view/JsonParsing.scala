@@ -1,7 +1,7 @@
-package com.knoldus.jsonParsing.view
+package com.knoldus.json.view
 
-import com.knoldus.jsonParsing.controller.{CommentController, PostController, UserController}
-import com.knoldus.jsonParsing.model._
+import com.knoldus.json.controller.{CommentController, PostController, UserController}
+import com.knoldus.json.model._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

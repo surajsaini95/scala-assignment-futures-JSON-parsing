@@ -1,4 +1,4 @@
-package com.knoldus.jsonParsing.view
+package com.knoldus.json.view
 
 import org.scalatest.{AsyncFlatSpec, BeforeAndAfterAll}
 

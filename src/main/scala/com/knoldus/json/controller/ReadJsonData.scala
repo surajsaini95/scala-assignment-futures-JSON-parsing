@@ -1,4 +1,4 @@
-package com.knoldus.jsonParsing.controller
+package com.knoldus.json.controller
 
 import org.apache.commons.io.IOUtils
 import org.apache.http.client.methods.HttpGet

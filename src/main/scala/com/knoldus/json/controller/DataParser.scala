@@ -1,6 +1,6 @@
-package com.knoldus.jsonParsing.controller
+package com.knoldus.json.controller
 
-import com.knoldus.jsonParsing.model.{Comment, Post, User}
+
 import net.liftweb.json.DefaultFormats
 
 
