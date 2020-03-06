@@ -12,8 +12,8 @@ libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.5.11"
 
 libraryDependencies += "net.liftweb" %% "lift-json" % "3.4.0"
 
-//libraryDependencies += "org.twitter4j" % "twitter4j-core" % "4.0.7"
-
 libraryDependencies += "org.twitter4j" % "twitter4j-stream" % "4.0.6"
 
 libraryDependencies += "com.typesafe" % "config" % "1.4.0"
+
+libraryDependencies += "org.mockito" %% "mockito-scala" % "1.11.4" % Test

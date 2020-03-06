@@ -1,9 +1,10 @@
 package com.knoldus.twitter.controller
 
-import twitter4j.{Query, Status, Twitter}
+import com.knoldus.twitter.model.CustomTweet
+import twitter4j.Query
 
 import scala.concurrent.Future
 
 trait ReadTwitterStatus {
-    def  getTwitterStatus(hashTagQuery: Query) : Future[List[Status]]
+    def  getTwitterStatus(hashTagQuery: Query) : Future[List[CustomTweet]]
 }
